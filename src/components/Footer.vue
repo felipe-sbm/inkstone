@@ -5,7 +5,7 @@ import NotByAI from "@/assets/CN/chinese-light.png";
 
 <template>
   <footer>
-    <div>
+    <div class="credits">
       <p>
         &copy; 2026 <a href="https://fsbm.otsuki.dev">Felipe SBM</a>. MIT
         licensed, free use.
@@ -18,7 +18,7 @@ import NotByAI from "@/assets/CN/chinese-light.png";
       </a>
       <span>•</span>
       <a href="https://github.com/felipe-sbm/inkstone/issues">
-        <BadgeAlert class="icon" />Report Issue
+        <BadgeAlert class="icon" />Report a Issue
       </a>
       <span>•</span>
       <a href="https://opensource.com/resources/what-open-source">
@@ -26,7 +26,7 @@ import NotByAI from "@/assets/CN/chinese-light.png";
       </a>
     </nav>
 
-    <div>
+    <div class="not-by-ai">
       <a href="https://notbyai.fyi/" target="_blank" rel="noopener noreferrer">
         <img :src="NotByAI" alt="Not by AI" />
       </a>
@@ -77,14 +77,55 @@ footer {
     pointer-events: none;
     user-select: none;
   }
+  .not-by-ai {
+    a {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      height: 2rem;
+      
+    }
+    img {
+      height: 2rem;
+      opacity: 0.75;
+      transition: 500ms;
 
-  img {
-    height: 2rem;
-    opacity: 0.75;
-    transition: 500ms;
+      &:hover {
+        opacity: 1;
+      }
+    }
+  }
+}
 
-    &:hover {
-      opacity: 1;
+@media screen and (max-width: 900px) {
+  footer {
+    flex-direction: column-reverse;
+    gap: 1rem;
+    text-align: center;
+  }
+}
+
+@media screen and (max-width: 530px) {
+  footer {
+    .credits {
+      p {
+        font-size: smaller;
+      }
+    }
+
+    nav {
+      flex-direction: column;
+      gap: 0.5rem;
+
+      a {
+        margin: 0 auto;
+        font-size: small;
+        text-decoration: 1px dotted;
+      }
+
+      span {
+        display: none;
+      }
     }
   }
 }
