@@ -23,13 +23,11 @@ const closeMenu = () => {
 
     <nav>
       <RouterLink to="/" exact-active-class="active">首页</RouterLink>
-      <RouterLink to="/generate" exact-active-class="active"
-        >生成拼音</RouterLink
-      >
-      <RouterLink to="/write" exact-active-class="active">写作</RouterLink>
-      <!-- <RouterLink to="/about" exact-active-class="active"
-        >关于该项目</RouterLink # Como ainda não temos pronto, vou deixar desligado por enquanto
-      > -->
+      <RouterLink to="/generate" exact-active-class="active">生成拼音</RouterLink>
+      <!--       
+        <RouterLink to="/write" exact-active-class="active">写作</RouterLink> # Como ainda não temos pronto, vou deixar desligado por enquanto
+      -->
+      <RouterLink to="/about" exact-active-class="active">关于该项目</RouterLink>
     </nav>
 
     <select id="lang" title="Select your language">
@@ -44,11 +42,16 @@ const closeMenu = () => {
       </button>
 
       <div class="dropdown-menu" :class="{ open: isMenuOpen }">
-        <RouterLink to="/" @click="closeMenu" exact-active-class="active">首页</RouterLink>
-        <RouterLink to="/generate" @click="closeMenu" exact-active-class="active"
+        <RouterLink to="/" @click="closeMenu" exact-active-class="active"
+          >首页</RouterLink
+        >
+        <RouterLink
+          to="/generate"
+          @click="closeMenu"
+          exact-active-class="active"
           >生成拼音</RouterLink
         >
-        <RouterLink to="/write" @click="closeMenu" exact-active-class="active">写作</RouterLink>
+        <RouterLink to="/about" @click="closeMenu" exact-active-class="active">关于该项目</RouterLink>
       </div>
     </div>
   </header>
