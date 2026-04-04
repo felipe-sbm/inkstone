@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import BottomCard from "@/components/BottomCard.vue";
+import Server from "@/assets/server.webp";
+import { BeanOff, GlobeX, ServerCrash } from "@lucide/vue";
 </script>
 
 <template>
@@ -18,27 +20,48 @@ import BottomCard from "@/components/BottomCard.vue";
   </section>
 
   <section class="about-problem">
-    <h2>Problema</h2>
-    <p>
-      Muitas soluções usam modelos muito grandes para uma tarefa simples,
-      criando dependência de nuvem, maior custo e maior consumo de recursos.
-    </p>
+    <div class="about-problem-heading">
+      <span>O Problema</span>
+      <h2>Diga adeus à dependência de grandes modelos</h2>
+      <p>
+        Muitas soluções usam modelos muito grandes para uma tarefa simples,
+        criando dependência de nuvem, maior custo e maior consumo de recursos.
+      </p>
+    </div>
 
-    <div class="about-problem-grid">
-      <article class="about-problem-card">
-        <h3>Infraestrutura pesada</h3>
-        <p>Mais latência e custo operacional para conversões básicas.</p>
-      </article>
+    <div class="about-problem-content">
+      <div class="about-problem-left">
+        <article class="about-problem-card">
+          <h3>
+            <span><ServerCrash :size="20" /></span> Infraestrutura pesada
+          </h3>
+          <p>Mais latência e custo operacional para conversões básicas.</p>
+        </article>
 
-      <article class="about-problem-card">
-        <h3>Dependência de internet</h3>
-        <p>Sem conexão estável, o fluxo de estudo e produção é prejudicado.</p>
-      </article>
+        <article class="about-problem-card">
+          <h3>
+            <span><GlobeX :size="20" /></span> Dependência de internet
+          </h3>
+          <p>
+            Sem conexão estável, o fluxo de estudo e produção é prejudicado.
+          </p>
+        </article>
 
-      <article class="about-problem-card">
-        <h3>Complexidade desnecessária</h3>
-        <p>Ferramentas simples ficam difíceis de manter e usar no dia a dia.</p>
-      </article>
+        <article class="about-problem-card">
+          <h3>
+            <span><BeanOff :size="20" /></span> Complexidade desnecessária
+          </h3>
+          <p>
+            Ferramentas simples ficam difíceis de manter e usar no dia a dia.
+          </p>
+        </article>
+      </div>
+
+      <div class="about-problem-right">
+        <!-- Créditos para: https://www.freepik.com/free-vector/cloud-computing-concept_1531135.htm#fromView=search&page=1&position=0&uuid=1a3f4fd8-8dca-4d99-87f4-22232383c47a&query=server -->
+        <!-- Saturação e escala de cores modificadas no GIMP-->
+        <img :src="Server" alt="Servidor em alto uso" />
+      </div>
     </div>
   </section>
 
@@ -99,6 +122,8 @@ import BottomCard from "@/components/BottomCard.vue";
 .about-hero {
   padding: 1rem 0;
   position: relative;
+  overflow: visible;
+  isolation: isolate;
   height: 50rem;
   display: flex;
   flex-direction: column;
@@ -135,6 +160,7 @@ import BottomCard from "@/components/BottomCard.vue";
     background-image: radial-gradient($primary-color 0%, transparent 100%);
     margin-top: 1rem;
     z-index: -1;
+    pointer-events: none;
     filter: blur(30px);
     opacity: 0.25;
   }
@@ -149,8 +175,104 @@ import BottomCard from "@/components/BottomCard.vue";
     background-image: radial-gradient($primary-color 0%, transparent 100%);
     margin-top: 1rem;
     z-index: -1;
+    pointer-events: none;
     filter: blur(30px);
     opacity: 0.15;
+  }
+}
+
+.about-problem {
+  margin: 4rem 0;
+  display: grid;
+
+  .about-problem-heading {
+    max-width: 40rem;
+
+    span {
+      display: inline-block;
+      margin-bottom: 0.75rem;
+      font-size: 0.8rem;
+      font-weight: 700;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      color: $tertiary-color;
+    }
+
+    h2 {
+      margin: 0;
+      line-height: 1.05;
+      color: #163463;
+    }
+
+    p {
+      margin: 1.25rem 0 0;
+      max-width: 34rem;
+      font-size: 1.05rem;
+      line-height: 1.6;
+      color: $neutral-color;
+    }
+  }
+
+  .about-problem-content {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    gap: 2.5rem;
+    align-items: center;
+  }
+
+  .about-problem-left {
+    display: flex;
+    gap: 1.15rem;
+    flex-direction: column;
+
+    .about-problem-card {
+      background-color: white;
+      border-radius: 2rem;
+      padding: 1.5rem;
+      border: 1px solid #0d74f214;
+      box-shadow: 0 1px 15px #0d74f214;
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+        color: #163463;
+
+        span {
+          width: 1.8rem;
+          height: 1.8rem;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border-radius: 1rem;
+          background: rgba($tertiary-color, 0.15);
+          color: $tertiary-color;
+          flex: 0 0 auto;
+        }
+      }
+
+      p {
+        margin: 0;
+        margin-top: 0.5rem;
+        font-size: 1rem;
+        line-height: 1.55;
+        color: $neutral-color;
+      }
+    }
+  }
+
+  .about-problem-right {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      width: min(100%, 30rem);
+      height: auto;
+      mix-blend-mode: multiply;
+    }
   }
 }
 
@@ -258,6 +380,16 @@ import BottomCard from "@/components/BottomCard.vue";
 
   .about-grid {
     grid-template-columns: 1fr;
+  }
+
+  .about-problem {
+    .about-problem-content {
+      grid-template-columns: 1fr;
+    }
+
+    .bout-problem-right {
+      justify-content: flex-start;
+    }
   }
 }
 </style>
