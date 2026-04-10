@@ -5,16 +5,18 @@ import { ref } from "vue";
 const props = withDefaults(
   defineProps<{
     text?: string;
+    interactive?: boolean;
   }>(),
   {
     text: "",
+    interactive: true,
   },
 );
 
 const copied = ref(false);
 
 async function copyOutput() {
-  if (!props.text?.trim()) {
+  if (!props.interactive || !props.text?.trim()) {
     return;
   }
 
@@ -31,14 +33,27 @@ async function copyOutput() {
 </script>
 
 <template>
-  <div class="output">
+  <div class="output" :class="{ 'is-placeholder': !props.interactive }">
     <div class="title">
       <label for="output">文本输出</label>
       <button
         type="button"
         @click="copyOutput"
-        :title="copied ? 'Copiado!' : 'Copiar texto'"
-        :aria-label="copied ? 'Texto copiado' : 'Copiar texto'"
+        :disabled="!props.interactive"
+        :title="
+          !props.interactive
+            ? 'Digite um texto para habilitar a cópia'
+            : copied
+              ? 'Copiado!'
+              : 'Copiar texto'
+        "
+        :aria-label="
+          !props.interactive
+            ? 'Cópia desabilitada'
+            : copied
+              ? 'Texto copiado'
+              : 'Copiar texto'
+        "
       >
         <Check v-if="copied" :size="18" />
         <Copy v-else :size="18" />
@@ -55,11 +70,13 @@ async function copyOutput() {
 @use "@/style.scss" as *;
 
 .output {
-  justify-content: start;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
   background-image: linear-gradient(130deg, #0e172a 50%, #1b3262 100%);
   border-radius: 1rem;
-  padding: 1rem 2rem;
-  height: 12rem;
+  padding: 1rem 1.25rem;
+  min-height: 12rem;
   font-family: Arial, Helvetica, sans-serif;
   color: white;
 
@@ -70,8 +87,10 @@ async function copyOutput() {
 
     label {
       font-weight: bold;
-      color: #64748B;
-      font-size: small;
+      color: #64748b;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.03em;
     }
 
     button {
@@ -84,12 +103,41 @@ async function copyOutput() {
       &:hover {
         color: $tertiary-color;
       }
+
+      &:disabled {
+        opacity: 0.45;
+        cursor: not-allowed;
+      }
     }
   }
 
-  .text p {
+  .text {
     margin-top: 0.5rem;
-    color: white;
+    flex: 1;
+    overflow-y: auto;
+
+    p {
+      margin: 0;
+      color: white;
+      white-space: pre-wrap;
+      word-break: break-word;
+      line-height: 1.5;
+    }
+  }
+
+  &.is-placeholder {
+    .text p {
+      color: rgba(255, 255, 255, 0.62);
+      user-select: none;
+      -webkit-user-select: none;
+    }
+  }
+}
+
+@media (max-width: 640px) {
+  .output {
+    min-height: 10.5rem;
+    padding: 0.875rem 1rem;
   }
 }
 </style>

@@ -60,7 +60,7 @@ const toneMode = computed<ToneMode>({
 .settings {
   background-color: #f3f4f6;
   border-radius: 1rem;
-  padding: 1rem 2rem;
+  padding: 1rem 1.25rem;
   margin-top: 1rem;
 
   .title {
@@ -84,7 +84,7 @@ const toneMode = computed<ToneMode>({
 
     label {
       display: flex;
-      align-items: center;
+      align-items: flex-start;
       gap: 0.5rem;
       padding: 0.5rem 1rem;
       border-radius: 0.5rem;
@@ -93,11 +93,20 @@ const toneMode = computed<ToneMode>({
 
       color: $neutral-color;
       background-color: #fcfdfd;
+      line-height: 1.4;
 
       input[type="radio"] {
         border: 1px solid #d0d2d2;
+        margin-top: 0.15rem;
+        flex-shrink: 0;
       }
     }
+  }
+}
+
+@media (max-width: 640px) {
+  .settings {
+    padding: 0.875rem 1rem;
   }
 }
 </style>

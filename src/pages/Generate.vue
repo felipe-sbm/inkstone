@@ -11,6 +11,7 @@ const toneMode = ref<ToneMode>("marks");
 const unihanMap = ref<Record<string, string>>({});
 const loading = ref(false);
 const loadError = ref("");
+const hasUserInput = computed(() => Boolean(chineseText.value.trim()));
 
 /* Gerando um mapa de tons para exibir em números */
 const diacriticMap: Record<string, { base: string; tone: number }> = {
@@ -130,47 +131,71 @@ function toNumericTone(reading: string) {
 </script>
 
 <template>
-  <div class="title">
-    <h1>Conversor Hanzi para Pinyin</h1>
-    <p>Insira seu texto abaixo para converter para Pinyin</p>
-  </div>
+  <section class="generate-page">
+    <div class="title">
+      <h1>Conversor Hanzi para Pinyin</h1>
+      <p>Insira seu texto abaixo para converter para Pinyin</p>
+    </div>
 
-  <main>
-    <section>
-      <Input
-        label="Texto em chinês"
-        v-model="chineseText"
-        placeholder="输入一些文字，系统将生成拼音。"
-      />
-    </section>
-    <section>
-      <Output :text="previewPinyin" />
-      <OutputSettings v-model="toneMode" />
-    </section>
-  </main>
+    <main class="generate-layout">
+      <section class="panel">
+        <Input
+          label="Texto em chinês"
+          v-model="chineseText"
+          placeholder="输入一些文字，系统将生成拼音。"
+        />
+      </section>
+      <section class="panel">
+        <Output :text="previewPinyin" :interactive="hasUserInput" />
+        <OutputSettings v-model="toneMode" />
+      </section>
+    </main>
+  </section>
 </template>
 
 <style scoped lang="scss">
 @use "@/style.scss" as *;
 
+.generate-page {
+  padding: clamp(1rem, 3vw, 2rem);
+}
+
 .title {
   margin-bottom: 2rem;
 
   h1 {
+    color: $title-color;
+    font-size: clamp(1.75rem, 4vw, 2.5rem);
+    line-height: 1.1;
     margin-bottom: 0;
   }
 
   p {
     color: $neutral-color;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
     font-weight: 400;
     margin-top: 0;
   }
 }
 
-main {
+.generate-layout {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 2rem;
+  gap: clamp(1rem, 2.5vw, 2rem);
+}
+
+.panel {
+  min-width: 0;
+}
+
+@media (max-width: 960px) {
+  .title {
+    margin-bottom: 1.25rem;
+  }
+
+  .generate-layout {
+    grid-template-columns: 1fr;
+  }
 }
 </style>
 

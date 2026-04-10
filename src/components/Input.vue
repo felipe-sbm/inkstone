@@ -33,45 +33,61 @@ export default {
 
 .text-input {
   display: flex;
-  position: relative;
   flex-direction: column;
-  gap: 0.5rem;
+  gap: 0.625rem;
   background-color: #fcfdfd;
   border-radius: 1rem;
   box-shadow: 0 10px 15px rgba($primary-color, 0.15);
-
-  padding: 1rem 2rem 2rem 2rem;
-  height: 11rem;
-
-  &:focus {
-    outline: none;
-    border-color: rgba($primary-color, 10%);
-    box-shadow: 0 0 5px rgba($primary-color, 0.5);
-  }
+  padding: 1rem 1.25rem 1.25rem 1.25rem;
+  min-height: 12rem;
 
   label {
-    font-weight: bold;
+    font-weight: 700;
     color: $primary-color;
-    font-size: small;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.03em;
   }
 
   textarea {
-    position: absolute;
-    padding: 3rem 2rem;
+    width: 100%;
+    min-height: 8rem;
+    box-sizing: border-box;
+    padding: 0.5rem 0;
     font-size: 1rem;
+    line-height: 1.5;
     border: none;
-    border-radius: 1rem;
-    transition: 500ms;
-
-    top: 0;
-    left: 0;
-    width: 32.5rem;
-    height: 8rem;
     background-color: transparent;
+    resize: vertical;
+    font-family: inherit;
+    color: #1f2937;
+    transition: 200ms;
+    overflow: auto;
 
     &:focus {
-      outline: 1px dotted $primary-color;
-      border: none;
+      outline: none;
+    }
+
+    &::placeholder {
+      color: #9ca3af;
+    }
+  }
+
+  &:focus-within {
+    box-shadow:
+      0 0 0 2px rgba($primary-color, 0.25),
+      0 10px 15px rgba($primary-color, 0.15);
+  }
+}
+
+@media (max-width: 640px) {
+  .text-input {
+    padding: 0.875rem 1rem 1rem 1rem;
+    min-height: 10.5rem;
+
+    textarea {
+      min-height: 7rem;
+      font-size: 0.95rem;
     }
   }
 }
