@@ -16,18 +16,16 @@ import {
 } from "@lucide/vue";
 import UFRN from "@/assets/ufrn.webp";
 import ZISU from "@/assets/zisu.webp";
+import { useI18n } from "@/i18n";
+
+const { t, tString } = useI18n();
 </script>
 
 <template>
   <section class="about-hero">
-    <h1>Simples,</h1>
-    <h2>portanto fácil.</h2>
-    <p>
-      Em uma era de excesso de recursos computacionais, o Inkstone escolhe
-      retornar ao essencial. Através de algoritmos altamente otimizados,
-      oferecemos uma solução digital sustentável para a conversão de caracteres
-      chineses para Pinyin.
-    </p>
+    <h1>{{ t("about.hero.title1") }}</h1>
+    <h2>{{ t("about.hero.title2") }}</h2>
+    <p>{{ t("about.hero.description") }}</p>
 
     <div class="beam-1"></div>
     <div class="beam-2"></div>
@@ -35,38 +33,38 @@ import ZISU from "@/assets/zisu.webp";
 
   <section class="about-problem">
     <div class="about-problem-heading">
-      <span>O Problema</span>
-      <h2>Diga adeus à dependência de grandes modelos</h2>
-      <p>
-        Muitas soluções usam modelos muito grandes para uma tarefa simples,
-        criando dependência de nuvem, maior custo e maior consumo de recursos.
-      </p>
+      <span>{{ t("about.problem.eyebrow") }}</span>
+      <h2>{{ t("about.problem.title") }}</h2>
+      <p>{{ t("about.problem.description") }}</p>
     </div>
 
     <div class="about-problem-content">
       <div class="about-problem-left">
         <article class="about-problem-card">
           <h3>
-            <span><ServerCrash :size="20" /></span> Infraestrutura pesada
+            <span><ServerCrash :size="20" /></span>
+            {{ t("about.problem.article.article1.title") }}
           </h3>
-          <p>Mais latência e custo operacional para conversões básicas.</p>
+          <p>{{ t("about.problem.article.article1.description") }}</p>
         </article>
 
         <article class="about-problem-card">
           <h3>
-            <span><GlobeX :size="20" /></span> Dependência de internet
+            <span><GlobeX :size="20" /></span>
+            {{ t("about.problem.article.article2.title") }}
           </h3>
           <p>
-            Sem conexão estável, o fluxo de estudo e produção é prejudicado.
+            {{ t("about.problem.article.article2.description") }}
           </p>
         </article>
 
         <article class="about-problem-card">
           <h3>
-            <span><BeanOff :size="20" /></span> Complexidade desnecessária
+            <span><BeanOff :size="20" /></span>
+            {{ t("about.problem.article.article3.title") }}
           </h3>
           <p>
-            Ferramentas simples ficam difíceis de manter e usar no dia a dia.
+            {{ t("about.problem.article.article3.description") }}
           </p>
         </article>
       </div>
@@ -74,47 +72,38 @@ import ZISU from "@/assets/zisu.webp";
       <div class="about-problem-right">
         <!-- Créditos para: https://www.freepik.com/free-vector/cloud-computing-concept_1531135.htm#fromView=search&page=1&position=0&uuid=1a3f4fd8-8dca-4d99-87f4-22232383c47a&query=server -->
         <!-- Saturação e escala de cores modificadas no GIMP-->
-        <img :src="Server" alt="Servidor em alto uso" />
+        <img :src="Server" :alt="tString('about.problem.imageAlt')" />
       </div>
     </div>
   </section>
 
   <section class="about-solution">
     <div class="about-solution-heading">
-      <span>A Solução</span>
-      <h2>Aplicando a Lógica <i>Client-Side Rendering</i></h2>
-      <p>
-        O uso de processamento diretamente no navegador, com código leve e
-        simples, permite um uso mais rápido e menos custoso, sem a necessidade
-        de grandes modelos ou dependência de nuvem.
-      </p>
+      <span>{{ t("about.solution.eyebrow") }}</span>
+      <h2>
+        {{ t("about.solution.title") }}
+        <i>{{ t("about.solution.titleEnphasis") }}</i>
+      </h2>
+      <p>{{ t("about.solution.description") }}</p>
     </div>
 
     <div class="about-solution-content">
       <div class="about-solution-column">
         <article class="about-solution-card">
           <span><Leaf :size="25" /></span>
-          <h3>Menos uso de dados</h3>
+          <h3>{{ t("about.solution.benefits.benefit1.title") }}</h3>
           <p>
-            Pelo fato de que o processamento ocorre localmente, é necessário um
-            único carregamento para o sistema inteiro funcionar.
+            {{ t("about.solution.benefits.benefit1.description") }}
           </p>
-          <!-- Ficou muito grande o texto que fiz, mas para salvar vou deixar aqui: -->
-          <!--
-            Não sendo necessária a transferência de dados, o que reduz o consumo de dados
-            e torna a experiência mais fluida, mesmo em conexões lentas ou instáveis.
-          -->
         </article>
       </div>
 
       <div class="about-solution-column">
         <article class="about-solution-card">
           <span><HardDriveDownload :size="25" /></span>
-          <h3>Download do site</h3>
+          <h3>{{ t("about.solution.benefits.benefit2.title") }}</h3>
           <p>
-            O site pode ser baixado e utilizado offline, sem necessidade de
-            conexão contínua. Pois todo o banco de dados está otimizado e
-            inbutido no código, para não ocupar muito espaço (edge computing).
+            {{ t("about.solution.benefits.benefit2.description") }}
           </p>
         </article>
       </div>
@@ -122,11 +111,9 @@ import ZISU from "@/assets/zisu.webp";
       <div class="about-solution-column">
         <article class="about-solution-card">
           <span><BadgeDollarSign :size="25" /></span>
-          <h3>Custo operacional mínimo</h3>
+          <h3>{{ t("about.solution.benefits.benefit3.title") }}</h3>
           <p>
-            Já que o sistema é simples e não requer infraestrutura pesada.
-            Deixamos sem nenhum tipo de monetização, sem propagandas chatas e
-            sem cobrança de uso de serviço.
+            {{ t("about.solution.benefits.benefit3.description") }}
           </p>
         </article>
       </div>
@@ -135,12 +122,10 @@ import ZISU from "@/assets/zisu.webp";
 
   <section class="about-info">
     <div class="about-info-left">
-      <span>A Parceria</span>
-      <h2>Uma colaboração que cruza fronteiras</h2>
+      <span>{{ t("about.paternship.eyebrow") }}</span>
+      <h2>{{ t("about.paternship.title") }}</h2>
       <p>
-        O Inkstone surgiu da colaboração entre a UFRN e a ZISU, unindo
-        conhecimento técnico e linguagem para criar uma solução prática para
-        necessidades reais.
+        {{ t("about.paternship.description") }}
       </p>
       <div class="about-info-left-universities">
         <div>
@@ -149,11 +134,10 @@ import ZISU from "@/assets/zisu.webp";
             href="https://www.ufrn.br/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Universidade Federal do Rio Grande do Norte"
+            :alt="tString('about.paternship.ufrnAlt')"
+            :title="tString('about.paternship.ufrnTitle')"
           >
-            <span class="full-name"
-              >Universidade Federal do Rio Grande do Norte - Brazil</span
-            >
+            <span class="full-name">{{ t("about.paternship.ufrnTitle") }}</span>
           </a>
         </div>
         <div>
@@ -162,32 +146,40 @@ import ZISU from "@/assets/zisu.webp";
             href="https://www.zisu.edu.cn/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Zhengzhou Information Science and Technology University"
+            :alt="tString('about.paternship.zisuAlt')"
+            :title="tString('about.paternship.zisuTitle')"
           >
-            <span class="full-name"
-              >Zhejiang International Studies University - China</span
-            >
+            <span class="full-name">{{ t("about.paternship.zisuTitle") }}</span>
           </a>
         </div>
       </div>
     </div>
     <div class="about-info-right">
       <div>
-        <img :src="UFRN" alt="Reitoria da UFRN" class="ufrn" />
+        <img
+          :src="UFRN"
+          :alt="tString('about.paternship.ufrnAlt')"
+          class="ufrn"
+        />
         <div class="about-info-right-universities">
           <span> <GraduationCap :size="25" /></span
           ><a
             href="https://www.ufrn.br/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Universidade Federal do Rio Grande do Norte"
+            :alt="tString('about.paternship.ufrnAlt')"
+            :title="tString('about.paternship.ufrnTitle')"
           >
             <span class="short-name">UFRN</span>
           </a>
         </div>
       </div>
       <div>
-        <img :src="ZISU" alt="Campus da ZISU" class="zisu" />
+        <img
+          :src="ZISU"
+          :alt="tString('about.paternship.zisuAlt')"
+          class="zisu"
+        />
         <div class="about-info-right-universities">
           <span> <University :size="25" /></span>
 
@@ -195,7 +187,8 @@ import ZISU from "@/assets/zisu.webp";
             href="https://www.zisu.edu.cn/"
             target="_blank"
             rel="noopener noreferrer"
-            title="Zhengzhou Information Science and Technology University"
+            :alt="tString('about.paternship.zisuAlt')"
+            :title="tString('about.paternship.zisuTitle')"
           >
             <span class="short-name">ZISU</span>
           </a>
@@ -206,21 +199,19 @@ import ZISU from "@/assets/zisu.webp";
 
   <section class="about-quote">
     <div class="about-quote-heading">
-      <span>O Propósito</span>
-      <h2>我们的使命：歌罗西书 3:23-24</h2>
+      <span>{{ t("about.purpose.eyebrow") }}</span>
+      <h2>{{ t("about.purpose.title") }}</h2>
       <hr />
-      <p>
-        “无论做什么，都要从心里做，像是为主做，不是为人做，因你们知道，你们必从主那里得着基业为赏赐。你们所事奉的乃是主基督。”
-      </p>
+      <p>"{{ t("about.purpose.description") }}"</p>
     </div>
     <div class="about-quote-tags">
       <span title="Global Collaboration"
-        ><MessageCircleCode :size="16" /> Open Source</span
+        ><MessageCircleCode :size="16" />{{ t("about.purpose.goal1") }}</span
       >
       <span title="Quality Education"
-        ><BookOpenText :size="16" /> Global Goal 4</span
+        ><BookOpenText :size="16" /> {{ t("about.purpose.goal2") }}</span
       >
-      <span title="Climate Action"><Sprout :size="16" /> Global Goal 13</span>
+      <span title="Climate Action"><Sprout :size="16" /> {{ t("about.purpose.goal3") }}</span>
     </div>
   </section>
   <BottomCard />

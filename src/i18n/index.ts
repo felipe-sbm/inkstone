@@ -59,6 +59,11 @@ export function t(path: string, params?: Record<string, string | number>): strin
   return path;
 }
 
+export function tString(path: string, params?: Record<string, string | number>): string {
+  const value = t(path, params);
+  return typeof value === 'string' ? value : path;
+}
+
 export function setLocale(locale: Locale): void {
   activeLocale.value = locale;
   applyDocumentLang(locale);
@@ -75,6 +80,7 @@ export function getIntlLocale(): string {
 export function useI18n() {
   return {
     t,
+    tString,
     setLocale,
     locale: activeLocale,
     readonlyLocale: readonly(activeLocale),

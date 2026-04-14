@@ -1,8 +1,17 @@
+<script setup lang="ts">
+import { useI18n } from "@/i18n";
+
+const { t, tString } = useI18n();
+function github() {
+  window.location.href = "https://github.com/felipe-sbm/inkstone";
+}
+</script>
+
 <template>
   <section class="bottom">
     <div class="card">
       <div class="top">
-        <h1>您准备好体验无比流畅的文本转换了吗？</h1>
+        <h1>{{ t("bottomCard.title") }}</h1>
       </div>
       <div class="buttons">
         <button
@@ -10,14 +19,10 @@
           class="start"
           title="Ir para o gerador de Pinyin"
         >
-          Começar Agora
+          {{ t("bottomCard.startButton") }}
         </button>
-        <button
-          @click="$router.push('/about')"
-          class="support"
-          title="Ir para o Github"
-        >
-          Ler sobre o Projeto
+        <button @click="github" class="support" :alt="tString('bottomCard.readButtonAlt')" >
+          {{ t("bottomCard.readButton") }}
         </button>
       </div>
     </div>

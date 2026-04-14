@@ -1,49 +1,66 @@
 <script setup lang="ts">
 import { FolderRoot, BadgeAlert, Smile } from "@lucide/vue";
-import NotByAI from "@/assets/CN/chinese-light.png";
 import UFRN from "@/assets/ufrn_logo.webp";
 import ZISU from "@/assets/zisu_logo.webp";
+import { useI18n } from "@/i18n";
+
+const { t, tString } = useI18n();
 </script>
 
 <template>
   <footer>
     <div class="credits">
       <p>
-        &copy; 2026 <a href="https://fsbm.otsuki.dev">Felipe SBM</a>. MIT
-        licensed, free use.
+        &copy; 2026
+        <a href="https://fsbm.otsuki.dev" :alt="tString('footer.creator')"
+          >Felipe SBM</a>.
+        {{ t("footer.licence") }}
       </p>
     </div>
 
     <nav>
       <a href="https://github.com/felipe-sbm/inkstone">
-        <FolderRoot class="icon" />Code Source
+        <FolderRoot class="icon" />{{ t("footer.links.sourceCode") }}
       </a>
       <span>•</span>
       <a href="https://github.com/felipe-sbm/inkstone/issues">
-        <BadgeAlert class="icon" />Report a Issue
+        <BadgeAlert class="icon" />{{ t("footer.links.reportIssue") }}
       </a>
       <span>•</span>
       <a href="https://opensource.com/resources/what-open-source">
-        <Smile class="icon" />What is Open Source?
+        <Smile class="icon" />{{ t("footer.links.openSource") }}
       </a>
     </nav>
 
     <div class="not-by-ai">
       <a href="https://notbyai.fyi/" target="_blank" rel="noopener noreferrer">
-        <img :src="NotByAI" alt="Not by AI" />
+        <img
+          :src="tString('footer.notByAI')"
+          :alt="tString('footer.notByAiAlt')"
+        />
       </a>
     </div>
   </footer>
   <footer class="under-footer">
     <a href="https://ufrn.br/" target="_blank" rel="noopener noreferrer">
-      <img :src="UFRN" alt="UFRN" class="ufrn" />
+      <img
+        :src="UFRN"
+        :alt="tString('footer.ufrn')"
+        :title="tString('footer.ufrn')"
+        class="ufrn"
+      />
     </a>
     <a
       href="https://cie.zisu.edu.cn/"
       target="_blank"
       rel="noopener noreferrer"
     >
-      <img :src="ZISU" alt="ZISU" class="zisu" />
+      <img
+        :src="ZISU"
+        :alt="tString('footer.zisu')"
+        :title="tString('footer.zisu')"
+        class="zisu"
+      />
     </a>
   </footer>
 </template>
