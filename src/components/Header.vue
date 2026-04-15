@@ -3,6 +3,7 @@ import { ref } from "vue";
 import { Menu } from "@lucide/vue";
 import { useI18n } from "@/i18n";
 import { inkstone } from "@/version";
+import YangIcon from "../../public/yang_icon.webp";
 
 const { t } = useI18n();
 const isMenuOpen = ref(false);
@@ -19,9 +20,10 @@ const closeMenu = () => {
 <template>
   <header>
     <div class="logo">
-      <RouterLink to="/" exact-active-class="active"
-        >Inkstone <span>(砚台)</span></RouterLink
-      >
+      <RouterLink to="/" exact-active-class="active">
+        <img :src="YangIcon" alt="Yang Icon">
+        Inkstone <span>(砚台)</span>
+      </RouterLink>
     </div>
 
     <nav>
@@ -78,11 +80,21 @@ header {
     font-size: 1.25rem;
     color: $primary-color;
     text-decoration: none;
+    display: flex;
+    align-items: end;
 
     span {
       font-weight: normal;
       font-size: 0.75rem;
       color: $secondary-color;
+      margin-bottom: 3.5px;
+      margin-left: 2px;
+    }
+
+    img {
+      width: 32px;
+      height: 32px;
+      margin-right: 0.25rem;
     }
   }
 
