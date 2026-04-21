@@ -12,7 +12,7 @@ const { t } = useI18n();
     <div class="logo">
       <RouterLink to="/" exact-active-class="active">
         <img :src="YangIcon" alt="Yang Icon" />
-        Inkstone <span>(砚台)</span>
+        {{ t("nav.logo.title") }}<span>{{ t("nav.logo.subtitle") }}</span>
       </RouterLink>
     </div>
 

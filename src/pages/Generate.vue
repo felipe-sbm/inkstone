@@ -142,7 +142,7 @@ function toNumericTone(reading: string) {
     <main class="generate-layout">
       <section class="panel">
         <Input
-          label="Texto em chinês"
+          :label="tString('generate.inputLabel')"
           v-model="chineseText"
           placeholder="输入一些文字，系统将生成拼音。"
         />

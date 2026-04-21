@@ -22,6 +22,10 @@ export const ptMessages: MessageTree = {
     generate: 'Conversor',
     write: 'Aprender Hanzis', // Projeto futuro :-] (quem versão 1.0.0)
     about: 'Sobre o projeto',
+    logo: {
+      title: 'Inkstone',
+      subtitle: '(砚台)',
+    },
   },
 
   bottomCard: {

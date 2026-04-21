@@ -3,15 +3,15 @@ import NotByAI_CN from "@/assets/CN/chinese-light.png";
 
 export const zhMessages: MessageTree = {
     routes: {
-        home: { title: '拼音生成器与拼音转换器 | Inkstone', description: '在线拼音生成器与转换器，快速将汉字转换为拼音。' },
-        generate: { title: '在线拼音生成器：汉字转拼音 | Inkstone', description: '使用 Inkstone 将汉字转换为拼音，支持声调符号与数字标调。' },
-        write: { title: '书写汉字 | Inkstone', description: '在 Inkstone 中练习书写汉字' },
-        about: { title: '关于 | Inkstone', description: '了解 Inkstone 项目' },
-        notfound: { title: '404 | Inkstone', description: '页面未找到' },
+        home: { title: '拼音生成器与拼音转换器 | 砚台', description: '在线拼音生成器与转换器，快速将汉字转换为拼音。' },
+        generate: { title: '在线拼音生成器：汉字转拼音 | 砚台', description: '使用砚台将汉字转换为拼音，支持声调符号与数字标调。' },
+        write: { title: '书写汉字 | 砚台', description: '在砚台中练习书写汉字' },
+        about: { title: '关于 | 砚台', description: '了解砚台项目' },
+        notfound: { title: '404 | 砚台', description: '页面未找到' },
     },
 
     common: {
-        appTitle: 'Inkstone',
+        appTitle: '砚台',
         loading: '加载中...',
         languageLabel: '系统语言',
     },
@@ -21,10 +21,14 @@ export const zhMessages: MessageTree = {
         generate: '转换',
         write: '学习汉字',
         about: '关于项目',
+        logo: {
+            title: '砚台',
+            subtitle: '(Inkstone)',
+        },
     },
 
     bottomCard: {
-        title: '准备好使用 Inkstone 了吗？',
+        title: '准备好使用砚台了吗？',
         startButton: '立即开始',
         startButtonAlt: '前往拼音转换器',
         readButton: '查看 GitHub 仓库',
@@ -69,7 +73,7 @@ export const zhMessages: MessageTree = {
         },
 
         features: {
-            title: '为什么选择 Inkstone？',
+            title: '为什么选择 砚台？',
             subtitle: '了解使用本工具的优势',
 
             feature1: {
@@ -92,7 +96,7 @@ export const zhMessages: MessageTree = {
 
         seo: {
             title: '免费在线拼音生成器与转换器',
-            description: '如果你正在搜索拼音生成器或拼音转换器，Inkstone 专为这项任务设计：高精度、无广告、本地浏览器处理。',
+            description: '如果你正在搜索拼音生成器或拼音转换器，砚台 专为这项任务设计：高精度、无广告、本地浏览器处理。',
         },
     },
 
@@ -126,7 +130,7 @@ export const zhMessages: MessageTree = {
         hero: {
             title1: '简洁，',
             title2: '因此高效。',
-            description: '在计算资源过剩的时代，Inkstone 选择回归本质。通过高效算法，为汉字转拼音提供轻量、可持续的解决方案。',
+            description: '在计算资源过剩的时代，砚台 选择回归本质。通过高效算法，为汉字转拼音提供轻量、可持续的解决方案。',
         },
 
         problem: {
@@ -180,7 +184,7 @@ export const zhMessages: MessageTree = {
         paternship: {
             eyebrow: '合作',
             title: '跨越国界的合作',
-            description: 'Inkstone 由 UFRN 与 ZISU 合作开发，结合技术与语言优势，打造实用工具。',
+            description: '砚台 由 UFRN 与 ZISU 合作开发，结合技术与语言优势，打造实用工具。',
 
             ufrnTitle: '北里奥格兰德联邦大学（巴西）',
             ufrnAlt: 'UFRN 校园照片',

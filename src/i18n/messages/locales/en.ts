@@ -21,6 +21,10 @@ export const enMessages: MessageTree = {
         generate: 'Converter',
         write: 'Learn Hanzi',
         about: 'About',
+        logo: {
+            title: 'Inkstone',
+            subtitle: '(砚台)',
+        },
     },
 
     bottomCard: {
