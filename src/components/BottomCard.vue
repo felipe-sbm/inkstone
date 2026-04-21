@@ -1,17 +1,22 @@
 <script setup lang="ts">
+import { ExternalLink } from "@lucide/vue";
 import { useI18n } from "@/i18n";
 
 const { t, tString } = useI18n();
 function github() {
-  window.location.href = "https://github.com/felipe-sbm/inkstone";
+  window.open(
+    "https://github.com/felipe-sbm/inkstone",
+    "_blank",
+    "noopener,noreferrer",
+  );
 }
 </script>
 
 <template>
   <section class="bottom">
-    <div class="card">
+    <div class="card" role="region" :aria-label="tString('bottomCard.title')">
       <div class="top">
-        <h1>{{ t("bottomCard.title") }}</h1>
+        <h2>{{ t("bottomCard.title") }}</h2>
       </div>
       <div class="buttons">
         <button
@@ -21,7 +26,12 @@ function github() {
         >
           {{ t("bottomCard.startButton") }}
         </button>
-        <button @click="github" class="support" :alt="tString('bottomCard.readButtonAlt')" >
+        <button
+          @click="github"
+          class="support"
+          :aria-label="tString('bottomCard.readButtonAlt')"
+        >
+          <ExternalLink :size="16" aria-hidden="true" />
           {{ t("bottomCard.readButton") }}
         </button>
       </div>
@@ -54,12 +64,13 @@ function github() {
     max-width: 50rem;
     width: 100%;
     height: 15rem;
+    box-shadow: 0 18px 35px #00183333;
 
     .top {
       display: flex;
       justify-content: center;
       margin-bottom: 1rem;
-      h1 {
+      h2 {
         color: white;
         font-size: 2.5rem;
         font-weight: 600;
@@ -79,30 +90,42 @@ function github() {
         font-size: 1rem;
         border-radius: 0.75rem;
         cursor: pointer;
-        transition: 500ms ease;
+        transition:
+          transform 250ms ease,
+          box-shadow 250ms ease,
+          background-color 250ms ease;
         font-weight: 600;
+
+        &:focus-visible {
+          outline: 3px solid #97c3ff;
+          outline-offset: 2px;
+        }
       }
 
       .start {
         background-color: white;
         color: $primary-color;
+        box-shadow: 0 8px 15px #00183321;
 
         &:hover {
+          transform: translateY(-2px);
           background-color: #f0f0f0;
+          box-shadow: 0 12px 20px #00183333;
         }
       }
 
       .support {
-        background-color: #dddfe27f;
+        background-color: #f0f3f880;
         border: 1px solid #dddfe2a9;
-        color: #f0f0f0;
+        color: #f7f9ff;
         margin-left: 1rem;
         display: flex;
         align-items: center;
         gap: 0.5rem;
 
         &:hover {
-          background-color: #dddfe256;
+          transform: translateY(-2px);
+          background-color: #f0f3f84a;
         }
       }
     }
@@ -110,7 +133,7 @@ function github() {
 }
 
 @media (max-width: 850px) {
-  .bottom .card .top h1 {
+  .bottom .card .top h2 {
     font-size: 2rem;
   }
 }
@@ -122,18 +145,20 @@ function github() {
 
     .card {
       height: auto;
-      padding: 1.5rem;
+      padding: 1.6rem;
 
-      .top h1 {
+      .top h2 {
         font-size: clamp(1rem, 4vw, 1.5rem);
       }
 
       .buttons {
         flex-direction: column;
+        width: 100%;
 
         button {
           width: 100%;
           margin-bottom: 0.75rem;
+          justify-content: center;
         }
 
         .support {

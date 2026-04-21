@@ -610,7 +610,7 @@ section {
   text-align: center;
 
   .about-quote-heading {
-    max-width: 40rem;
+    max-width: 50rem;
     margin: 0 auto;
 
     span {
@@ -645,7 +645,6 @@ section {
 
   p {
     margin: 1rem auto 0;
-    max-width: 45rem;
     color: $neutral-color;
     line-height: 1.7;
     font-style: italic;
