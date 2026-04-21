@@ -8,23 +8,23 @@ const { t } = useI18n();
 <template>
   <div class="features">
     <div class="cell feature-1">
-      <h1><SmilePlus /></h1>
+      <div class="feature-icon" aria-hidden="true"><SmilePlus /></div>
       <h2>{{ t('home.features.feature1.title') }}</h2>
       <p>
         {{ t('home.features.feature1.description') }}
       </p>
     </div>
     <div class="cell feature-2">
-      <h1><Zap /></h1>
+      <div class="feature-icon" aria-hidden="true"><Zap /></div>
       <h2>{{ t('home.features.feature2.title') }}</h2>
       <p>
         {{ t('home.features.feature2.description') }}
       </p>
     </div>
     <div class="cell feature-3">
-      <h1>
+      <div class="feature-icon" aria-hidden="true">
         <BeanOffIcon />
-      </h1>
+      </div>
       <h2>{{ t('home.features.feature3.title') }}</h2>
       <p>
         {{ t('home.features.feature3.description') }}
@@ -32,7 +32,7 @@ const { t } = useI18n();
     </div>
     <div class="cell feature-4">
       <div class="content">
-        <h1><BugPlay /></h1>
+        <div class="feature-icon" aria-hidden="true"><BugPlay /></div>
         <h2>{{ t('home.features.feature4.title') }}</h2>
         <p>
           {{ t('home.features.feature4.description') }}
@@ -61,7 +61,7 @@ const { t } = useI18n();
     position: relative;
     overflow: hidden;
 
-    h1 {
+    .feature-icon {
       margin: 0;
     }
 
@@ -80,7 +80,7 @@ const { t } = useI18n();
     @media (max-width: 768px) {
       padding: 2rem 4rem;
 
-      h1 {
+      .feature-icon {
         font-size: 31px;
       }
 
@@ -96,7 +96,7 @@ const { t } = useI18n();
     @media (max-width: 480px) {
       padding: 1.5rem 3rem;
 
-      h1 {
+      .feature-icon {
         font-size: 30px;
       }
 
@@ -116,7 +116,7 @@ const { t } = useI18n();
     color: $neutral-color;
     grid-column: span 2;
 
-    h1 {
+    .feature-icon {
       color: $tertiary-color;
     }
 
@@ -129,7 +129,7 @@ const { t } = useI18n();
     background-color: #dfe9fb;
     color: $neutral-color;
 
-    h1 {
+    .feature-icon {
       color: $primary-color;
     }
 
@@ -151,7 +151,7 @@ const { t } = useI18n();
     align-items: center;
     gap: 1rem;
 
-    h1 {
+    .feature-icon {
       color: $secondary-color;
     }
 

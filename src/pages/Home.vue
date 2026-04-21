@@ -7,7 +7,11 @@ import { useI18n } from "@/i18n";
 
 const { t, tString } = useI18n();
 function support() {
-  window.location.href = "https://github.com/felipe-sbm/inkstone";
+  window.open(
+    "https://github.com/felipe-sbm/inkstone",
+    "_blank",
+    "noopener,noreferrer",
+  );
 }
 </script>
 
@@ -21,18 +25,17 @@ function support() {
         <button
           @click="$router.push('/generate')"
           class="start"
-          :alt="tString('home.hero.startButtonAlt')"
+          :aria-label="tString('home.hero.startButtonAlt')"
         >
-          {{ t('home.hero.startButton') }}
+          {{ t("home.hero.startButton") }}
         </button>
         <button
           @click="support"
-          target="_blank"
           class="support"
-          :alt="tString('home.hero.supportButtonAlt')"
+          :aria-label="tString('home.hero.supportButtonAlt')"
         >
           <Star :size="16" />
-          {{ t('home.hero.supportButton') }}
+          {{ t("home.hero.supportButton") }}
         </button>
       </div>
     </div>
@@ -43,16 +46,16 @@ function support() {
 
   <section class="features">
     <div class="title">
-      <h2>{{ t('home.features.title') }}</h2>
-      <h3>{{ t('home.features.subtitle') }}</h3>
+      <h2>{{ t("home.features.title") }}</h2>
+      <h3>{{ t("home.features.subtitle") }}</h3>
     </div>
     <Features />
   </section>
 
- <!-- Coloquei essa parte aqui para o SEO, mesmo que invisível, ainda aparece nas pesquisas.-->
+  <!-- Coloquei essa parte aqui para o SEO, mesmo que invisível, ainda aparece nas pesquisas.-->
   <section class="seo-content" aria-label="SEO content">
-    <h2>{{ t('home.seo.title') }}</h2>
-    <p>{{ t('home.seo.description') }}</p>
+    <h2>{{ t("home.seo.title") }}</h2>
+    <p>{{ t("home.seo.description") }}</p>
   </section>
 
   <BottomCard />
@@ -62,39 +65,83 @@ function support() {
 @use "@/style.scss" as *;
 
 .hero {
-  padding: 2rem 0;
+  position: relative;
+  padding: 3.5rem 2rem;
   display: flex;
   flex-direction: row;
-  gap: 2rem;
+  gap: 2.5rem;
+  border-radius: 2rem;
+  overflow: hidden;
+  margin-top: 1rem;
+  background: radial-gradient(circle at 10% 15%, #dfeeff 0%, #dfeeff00 45%);
+  box-shadow: 0 30px 50px #0f2d5d35;
+  isolation: isolate;
+
+  &::before,
+  &::after {
+    content: "";
+    position: absolute;
+    z-index: -1;
+    border-radius: 100rem;
+    pointer-events: none;
+  }
+
+  &::before {
+    width: 16rem;
+    height: 16rem;
+    background: #88bbff2e;
+    top: -5rem;
+    right: -3rem;
+    filter: blur(32px);
+  }
+
+  &::after {
+    width: 30rem;
+    height: 30rem;
+    background: rgba($primary-color, 0.1);
+    bottom: -10rem;
+    right: 30rem;
+    filter: blur(32px);
+  }
+
+  display: flex;
 
   .introduction {
     flex: 1;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 0.5rem;
-    margin: 1rem;
+    gap: 0.8rem;
+    margin: 0;
+    max-width: 34rem;
 
     h1 {
-      font-size: 3rem;
+      font-size: 3.4rem;
       color: $primary-color;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: -0.03em;
       margin-bottom: 0;
-      line-height: 3.5rem;
+      line-height: 1.05;
+      text-wrap: balance;
+      animation: fade-up 550ms ease-out both;
     }
 
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.35rem;
       color: $secondary-color;
-      font-weight: 500;
+      font-weight: 600;
       margin: 0;
+      animation: fade-up 700ms ease-out both;
     }
 
     p {
-      font-size: 1.25rem;
+      font-size: 1.1rem;
       color: $neutral-color;
-      font-weight: 300;
+      max-width: 31rem; // Meu aniversário :-]
+      line-height: 1.6;
+      font-weight: 400;
       margin-top: 0;
+      animation: fade-up 850ms ease-out both;
     }
 
     .buttons {
@@ -102,38 +149,54 @@ function support() {
       align-items: center;
       justify-content: start;
       gap: 1rem;
+      margin-top: 0.5rem;
+      animation: fade-up 1000ms ease-out both;
 
       button {
         border: none;
-        padding: 0.75rem 1.5rem;
+        padding: 0.85rem 1.6rem;
         font-size: 1rem;
-        border-radius: 0.75rem;
+        border-radius: 0.9rem;
         cursor: pointer;
-        transition: 500ms ease;
+        transition:
+          transform 250ms ease,
+          box-shadow 250ms ease,
+          filter 250ms ease;
         font-weight: 600;
+        min-height: 2.9rem;
+
+        &:focus-visible {
+          outline: 3px solid #97c3ff;
+          outline-offset: 2px;
+        }
       }
 
       .start {
-        background-image: linear-gradient(90deg, #287af6 0%, #1d62c4 100%);
+        background-image: linear-gradient(100deg, #2c80f8 0%, #1663cf 100%);
         color: white;
-        box-shadow: 0 5px 10px #0000001a;
+        box-shadow: 0 10px 25px #1e67d436;
 
         &:hover {
-          background-image: linear-gradient(0deg, #1d62c4 0%, #287af6 100%);
-          box-shadow: 0 10px 10px #0000001a;
+          transform: translateY(-2px);
+          box-shadow: 0 16px 24px #1e67d445;
+          filter: saturate(1.08);
         }
       }
 
       .support {
-        background-color: white;
+        background: #ffffffcc;
+        border: 1px solid #d8e6ff;
+        backdrop-filter: blur(6px);
         color: $primary-color;
         display: flex;
         align-items: center;
         gap: 0.5rem;
-        box-shadow: 0 5px 10px #0004161a;
+        box-shadow: 0 8px 20px #00254f14;
 
         &:hover {
-          box-shadow: 0 10px 10px #002fff1a;
+          transform: translateY(-2px);
+          box-shadow: 0 14px 20px #00254f1f;
+          border-color: #c3d9ff;
         }
       }
     }
@@ -144,17 +207,21 @@ function support() {
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 1rem;
+    margin: 0;
+    animation: fade-up 850ms ease-out both;
 
     img {
-      max-width: 90%;
+      max-width: min(92%, 31rem);
       height: auto;
+      filter: drop-shadow(0 24px 25px #0f2d5d2c);
+      animation: float-y 7s ease-in-out infinite;
     }
   }
 }
 
 .features {
-  margin: 1rem;
+  margin: 4.5rem 1rem 2rem;
+  position: relative;
 
   .title {
     justify-content: center;
@@ -165,13 +232,14 @@ function support() {
     padding-top: 5rem;
 
     h2 {
-      font-size: 2rem;
+      font-size: 2.2rem;
       font-weight: 700;
       margin-bottom: 0.5rem;
+      color: $title-color;
     }
 
     h3 {
-      font-size: 1rem;
+      font-size: 1.08rem;
       color: $neutral-color;
       font-weight: 500;
       margin-top: 0;
@@ -180,17 +248,52 @@ function support() {
 }
 
 .seo-content {
-  display: none;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+@keyframes fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float-y {
+  0%,
+  100% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
 }
 
 @media (max-width: 600px) {
   .hero {
+    margin: 0.5rem 0.75rem 0;
+    border-radius: 1.5rem;
+    padding: 1.6rem 1rem 1.35rem;
     flex-direction: column;
     text-align: center;
 
     .introduction {
+      align-items: center;
+
       h1 {
-        font-size: 2rem;
+        font-size: 2.2rem;
       }
 
       h2 {
@@ -199,15 +302,19 @@ function support() {
 
       p {
         font-size: 1rem;
+        max-width: 34ch;
       }
 
       .buttons {
         justify-content: center;
-        flex-direction: column;
+        width: 100%;
+        flex-direction: row;
+        flex-wrap: wrap;
         gap: 0.75rem;
 
         button {
-          width: 100%;
+          flex: 1;
+          min-width: 10.5rem;
           display: flex;
           justify-content: center;
           padding: 1rem;
@@ -217,8 +324,24 @@ function support() {
 
     .mascot {
       img {
-        max-width: 60%;
+        max-width: 72%;
         height: auto;
+      }
+    }
+  }
+
+  .features {
+    margin: 3rem 0.75rem 1.2rem;
+
+    .title {
+      padding-top: 2.5rem;
+
+      h2 {
+        font-size: 1.85rem;
+      }
+
+      h3 {
+        font-size: 1rem;
       }
     }
   }

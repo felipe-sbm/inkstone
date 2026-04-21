@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { onBeforeUnmount, onMounted, ref } from "vue";
 import { Menu } from "@lucide/vue";
 import { useI18n } from "@/i18n";
 
 const { t } = useI18n();
 
 const isMenuOpen = ref(false);
+const menuRoot = ref<HTMLElement | null>(null);
 
 const toggleMenu = () => {
   isMenuOpen.value = !isMenuOpen.value;
@@ -14,15 +15,54 @@ const toggleMenu = () => {
 const closeMenu = () => {
   isMenuOpen.value = false;
 };
+
+const onClickOutside = (event: MouseEvent) => {
+  const target = event.target as Node | null;
+  if (!menuRoot.value || !target) {
+    return;
+  }
+
+  if (!menuRoot.value.contains(target)) {
+    closeMenu();
+  }
+};
+
+const onEscape = (event: KeyboardEvent) => {
+  if (event.key === "Escape") {
+    closeMenu();
+  }
+};
+
+onMounted(() => {
+  document.addEventListener("mousedown", onClickOutside);
+  document.addEventListener("keydown", onEscape);
+});
+
+onBeforeUnmount(() => {
+  document.removeEventListener("mousedown", onClickOutside);
+  document.removeEventListener("keydown", onEscape);
+});
 </script>
 
 <template>
-  <div class="menu-button">
-    <button @click="toggleMenu" title="Abrir Menu">
+  <div ref="menuRoot" class="menu-button">
+    <button
+      @click="toggleMenu"
+      title="Abrir Menu"
+      aria-label="Abrir menu de navegação"
+      aria-haspopup="menu"
+      :aria-expanded="isMenuOpen"
+      aria-controls="mobile-nav-menu"
+    >
       <Menu :size="24" />
     </button>
 
-    <div class="dropdown-menu" :class="{ open: isMenuOpen }">
+    <div
+      id="mobile-nav-menu"
+      class="dropdown-menu"
+      :class="{ open: isMenuOpen }"
+      role="menu"
+    >
       <RouterLink to="/" @click="closeMenu" exact-active-class="active">{{
         t("nav.home")
       }}</RouterLink>

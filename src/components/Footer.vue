@@ -12,7 +12,7 @@ const { t, tString } = useI18n();
     <div class="credits">
       <p>
         &copy; 2026
-        <a href="https://fsbm.otsuki.dev" :alt="tString('footer.creator')"
+        <a href="https://fsbm.otsuki.dev" :aria-label="tString('footer.creator')"
           >Felipe SBM</a>.
         {{ t("footer.licence") }}
       </p>
